@@ -27,6 +27,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "tailwindcss-textshadow": "^2.1.3",
     "vue-cli-plugin-tailwind": "~2.0.6"
   },
   "_id": "vue-ip-tracking@0.1.0",
