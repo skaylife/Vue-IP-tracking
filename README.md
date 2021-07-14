@@ -9,8 +9,13 @@
 Установка Tailwild `vue add tailwind`
 `npm i leaflet`
 
+leaflet `https://leafletjs.com/examples/quick-start/`
+
+MapBox : TokenTake `https://www.mapbox.com`
+
 install Tailwild | Text-Shadow
 `npm i --save-dev tailwindcss-textshadow`
+
 
 ✔️ import the plugin
 Add the `plugin` to the plugins array in your Tailwind configuration file `(tailwind.config.js)`.
@@ -35,6 +40,8 @@ plugins: [
 
 .text-shadow-none	
 ```
+
+Repo: `https://github.com/iunteq/tailwindcss-textshadow`
 
 ## Project setup
 ```
