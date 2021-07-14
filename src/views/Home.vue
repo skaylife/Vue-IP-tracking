@@ -45,7 +45,9 @@ export default {
     let mymap;
     const queryIp = ref("");
     const ipInfo = ref(null);
-    onMounted(() => {mymap = leaflet.map('mapid').setView([51.505, -0.09], 13);
+
+    onMounted(() => {
+      mymap = leaflet.map('mapid').setView([55.755, 37.5], 8);
 
     leaflet.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2theWxpZmUiLCJhIjoiY2tyM2N3bWh1MHB6ZzJvcHR5czQ1Z3AzYSJ9.Kjs3yXzzwPa3WcetHXTA0w', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -70,6 +72,8 @@ export default {
         lat: result.location.lat,
         lng: result.location.lng
       }
+      leaflet.marker([ipInfo.value.lat, ipInfo.value.lng]).addTo(mymap);
+      mymap.setView([ipInfo.value.lat, ipInfo.value.lng], 13);
       } catch (err) {
         alert(err.message);
       }
