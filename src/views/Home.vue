@@ -6,12 +6,14 @@
           <h1 class="text-red-600 font-semibold text-center text-3xl pb-4 text-shadow-sm ">IP Адрес трекер</h1>
         <div class="flex">
           <input
-
+              v-model="queryIp"
               class="flex-1 py-3 px-2 rounded-tl-md rounded-bl-md focus:outline-none"
               type="text"
               placeholder="Поиск любого IP-адреса, оставьте поле пустым и получите информацию о своём IP"
             />
-            <i class="cursor-pointer 
+            <i 
+            @click="getIpInfo"
+            class="cursor-pointer 
             bg-blue-600
             text-white
             px-4 
@@ -21,7 +23,7 @@
         </div>
       </div>
       <!-- IP информация -->
-      <IPInfo/>
+      <IPInfo v-if="ipInfo" v-bind:ipInfo="ipInfo"/>
     </div>
 
     <!-- Карта  -->
@@ -33,15 +35,16 @@
 // @ is an alias to /src
 import IPInfo from "../components/IPinfo.vue";
 import leaflet from "leaflet";
-import { onMounted } from '@vue/runtime-core';
-
+import { onMounted, ref } from '@vue/runtime-core';
+import axios from 'axios';
 
 export default {
   name: 'Home',
   components: { IPInfo },
   setup() {
     let mymap;
-
+    const queryIp = ref("");
+    const ipInfo = ref(null);
     onMounted(() => {mymap = leaflet.map('mapid').setView([51.505, -0.09], 13);
 
     leaflet.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2theWxpZmUiLCJhIjoiY2tyM2N3bWh1MHB6ZzJvcHR5czQ1Z3AzYSJ9.Kjs3yXzzwPa3WcetHXTA0w', {
@@ -54,6 +57,24 @@ export default {
 }).addTo(mymap);
     });
  
+    const getIpInfo = async () => {
+      try {
+        const data = await axios.get(`https://geo.ipify.org/api/v1?apiKey=at_3qjQQPcPDvapefL8wWwIrSQ1JuncO&ipAddress=${queryIp.value}`)
+      
+      const result = data.data;
+      ipInfo.value = {
+        address: result.ip,
+        state: result.location.region,
+        timezone: result.location.timezone,
+        isp: result.isp,
+        lat: result.location.lat,
+        lng: result.location.lng
+      }
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+    return { queryIp, ipInfo, getIpInfo }
   },
 };
 </script>

@@ -1,6 +1,6 @@
 # vue-ip-tracking
 
-# Команды для установки VueJS и Tailwild.css  
+# Команды для установки необходимы библиотек VueJS и Tailwild.css  
 
 Создание проекта `vue create vue-ip-tracking`
 
@@ -9,9 +9,13 @@
 Установка Tailwild `vue add tailwind`
 `npm i leaflet`
 
-leaflet `https://leafletjs.com/examples/quick-start/`
+Установка Axios `npm i axios`
 
-MapBox : TokenTake `https://www.mapbox.com`
+leaflet: https://leafletjs.com/examples/quick-start/
+
+MapBox : TokenTake https://www.mapbox.com
+
+Geo.ipify : https://geo.ipify.org/docs
 
 install Tailwild | Text-Shadow
 `npm i --save-dev tailwindcss-textshadow`
